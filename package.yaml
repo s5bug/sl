@@ -21,7 +21,8 @@ description:         Please see the README on GitHub at <https://github.com/Gith
 
 dependencies:
 - base >= 4.7 && < 5
-- Earley
+- megaparsec >= 8 && < 9
+- text
 
 library:
   source-dirs: src

@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: fbc1fee6e1cd6ed1f4c94c04fe893ab5c6b365914b76cce68b175ed4d8436f6b
+-- hash: f67ed5578382b61a8645f6633287efed4a456ff168e90a43d749f63fbc6f2409
 
 name:           sl
 version:        0.1.0.0
@@ -28,14 +28,16 @@ source-repository head
 library
   exposed-modules:
       Sl.Absyn
-      Sl.Grammar
+      Sl.Lexer
+      Sl.Parser
   other-modules:
       Paths_sl
   hs-source-dirs:
       src
   build-depends:
-      Earley
-    , base >=4.7 && <5
+      base >=4.7 && <5
+    , megaparsec >=8 && <9
+    , text
   default-language: Haskell2010
 
 executable sl-exe
@@ -46,9 +48,10 @@ executable sl-exe
       app
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      Earley
-    , base >=4.7 && <5
+      base >=4.7 && <5
+    , megaparsec >=8 && <9
     , sl
+    , text
   default-language: Haskell2010
 
 test-suite sl-test
@@ -60,7 +63,8 @@ test-suite sl-test
       test
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      Earley
-    , base >=4.7 && <5
+      base >=4.7 && <5
+    , megaparsec >=8 && <9
     , sl
+    , text
   default-language: Haskell2010

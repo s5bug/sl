@@ -7,8 +7,9 @@ data Source
 newtype Artifact
   = Arti [String]
   deriving Show
-newtype Package
+data Package
   = Pack [String]
+  | Root
   deriving Show
 
 data Statement
@@ -17,10 +18,8 @@ data Statement
   deriving Show
 
 data Definition
-  = Func String [ParameterList] Type [Statement]
-  | AbstractFunc String [ParameterList] Type
-  | Proc String [ParameterList] Type [Statement]
-  | AbstractProc String [ParameterList] Type
+  = Func String [ParameterList] Type (Maybe [Statement])
+  | Proc String [ParameterList] Type (Maybe [Statement])
   | Macr String [ParameterList] Type [Statement]
   | TypeDef String Type
   | Trait String [[Generic]] [Definition]
@@ -47,4 +46,4 @@ data Type
   deriving Show
 
 example :: Source
-example = S (Arti ["sl", "cats"]) (Pack ["@"]) [Trait "Monoid" [[G "A"]] [AbstractFunc "empty" [] (Qualified "A")]]
+example = S (Arti ["sl", "cats"]) Root [Trait "Monoid" [[G "A"]] [Func "empty" [] (Qualified "A") Nothing]]

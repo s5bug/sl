@@ -1,13 +1,12 @@
 module Main where
 
-import Data.Char
-import System.Environment
 import Control.Applicative
-import Text.Earley
+import qualified Data.Text.IO as T
+import Text.Megaparsec
 
-import Sl.Grammar
+import Sl.Parser
 
 main :: IO ()
 main = do
-  x <- readFile "test.sl"
-  print $ fullParses (parser grammar) x
+  x <- T.readFile "test.sl"
+  parseTest sl x
